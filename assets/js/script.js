@@ -1,6 +1,7 @@
 var todaysWeatherContainerEl = document.querySelector("#todaysWeather");
 var fiveDayForecastEl = document.querySelector("#fiveDayForecast");
 var locationSearch = document.location.search;
+//var inputFormEl = document.querySelector('#city-name');
 var locationDisplay = document.querySelector("#location-display");
 var cityNameDisplayEl = document.querySelector("#weather-for");
 var dayOne = document.querySelector("#dayOne");
@@ -8,24 +9,34 @@ var dayTwo = document.querySelector("#dayTwo");
 var dayThree = document.querySelector("#dayThree");
 var dayFour = document.querySelector("#dayFour");
 var dayFive = document.querySelector("#dayFive");
+var cityForm = document.querySelector("#city-search");
+var cityInput = document.querySelector("#city-name");
+var citySubmit = document.querySelector("#submit");
+var searchHistory = document.querySelector(".search-history");
 
+//save location name to localStorage 
+cityForm.addEventListener("submit", (event)=>{
+  event.defaultPrevented();
+  localStorage.setItem("search", cityInput.value);
+  console.log(cityInput.value);
+});
 
+//display search history buttons
+var displaySearchHistory = function (){
+  //display searches under search button
+  var displayName = document.createElement("button");
+  displayName.classList.add("btn");
+  displayName.classList.add("btn-secondary");
+  displayName.textContent = localStorage.getItem(cityInput.value);
+  searchHistory.appendChild(displayName);
+};
+
+//get location lat and lon
 var getLocationName = function () {
   //get text location//
   var cityStateEl = locationSearch.split("=")[1];
   //get city name from search//
   var cityName = cityStateEl.split("%2C")[0];
-
-  //save location name to localStorage 
-  localStorage.setItem("City Name", cityName);
-
-  //display searches under search button
-  var searchDisplay = document.querySelector(".search-history");
-  var displayName = document.createElement("div");
-  displayName.classList.add("btn");
-  displayName.classList.add("btn-secondary");
-  displayName.textContent = localStorage.getItem(cityName);
-  searchDisplay.appendChild(displayName);
 
   //get lat and lon based on city,state search//
   var apiUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&limit=5&apiKey=0e363cf8d4f89182d0429ca737e95a95";
@@ -34,6 +45,7 @@ var getLocationName = function () {
   fetch(apiUrl).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
+        displaySearchHistory();
         displayWeather(data);
         displayForecastOne (data);
         displayForecastTwo (data);
@@ -45,6 +57,7 @@ var getLocationName = function () {
   })
 };
 
+//display current weather
 var displayWeather = function (data) {
   // grab tags to display current weather
   var icon = document.querySelector("#current-weather-icon");
@@ -112,6 +125,7 @@ var displayWeather = function (data) {
   });
 };
 
+//display forecast one day ahead
 var displayForecastOne = function (data) {
   // vars for day one
   var date = document.querySelector("#one-date");
@@ -153,6 +167,7 @@ var displayForecastOne = function (data) {
   });
 };
 
+//display forecast two days ahead
 var displayForecastTwo = function (data) {
   // vars for day two
   var date = document.querySelector("#two-date");
@@ -194,6 +209,7 @@ var displayForecastTwo = function (data) {
   });
 };
 
+//display forecast three days ahead
 var displayForecastThree = function (data) {
   // vars for day three
   var date = document.querySelector("#three-date");
@@ -235,6 +251,7 @@ var displayForecastThree = function (data) {
   });
 };
 
+//display forecast four days ahead
 var displayForecastFour = function (data) {
   // vars for day four
   var date = document.querySelector("#four-date");
@@ -276,6 +293,7 @@ var displayForecastFour = function (data) {
   });
 };
 
+//display forecast five days ahead
 var displayForecastFive = function (data) {
   // vars for day five
   var date = document.querySelector("#five-date");
@@ -316,6 +334,5 @@ var displayForecastFive = function (data) {
     };
   });
 };
-
 
 getLocationName();

@@ -24,20 +24,19 @@
       <div class="new-search">
         <h3>Search For A City:</h3>
         <form id="city-search">
-          <label class="form-label" for="city-name">City, State</label>
-          <input name="city-name" id="city-name" type="text" class="form-input">
-          <button type="submit" class="btn btn-secondary">Search</button>
+          <input name="city-name" id="city-name" type="text" class="form-input" placeholder="City Name">
+          <button type="submit" id="submit" class="btn btn-secondary">Search</button>
         </form>
       </div>
       <!-- search history -->
-      <div class="search-history">
+      <ul class="search-history">
         <!-- dynamically add search history using JS -->
-      </div>
+      </ul>
     </div>
 
     <!-- display weather information here -->
     <div class="col-12 col-md-8 col-lg-9">
-      <h3 class="title">Today's Weather</h3>
+      <h3 class="title pt-3">Today's Weather</h3>
       <div class="row" id="todays-weather">
         <div class="col-3">
           <h4 class="" id="location-display"> </h4>
@@ -52,7 +51,7 @@
         </div>
       </div>
 
-      <h3 class="title">Five Day Forecast</h3>
+      <h3 class="title pt-3">Five Day Forecast</h3>
       <div class="row flex-row justify-content-between" id="five-day-forecast">
         <div class="col-2 bg-dark text-light p-3" id="dayOne">
           <h5 id="one-date"> </h5>
