@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather Dashboard</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Merriweather&display=swap"/>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="./assets/css/style.css"></link>
+</head>
+
+<body class="flex-column min-100-vh">
+  <!-- hero -->
+  <header class="text-center">
+    <h1>Weather Dashboard</h1>
+    <p id="weather-for"> Weather for:</p>
+  </header>
+
+  <main class="row flex-row justify-space-between">
+    <!-- left column with search and search history -->
+    <div class="col-12 col-md-4 col-lg-3">
+      <!-- new search -->
+      <div class="new-search">
+        <h3>Search For A City:</h3>
+        <form id="city-search">
+          <label class="form-label" for="city-name">City, State</label>
+          <input name="city-name" id="city-name" type="text" class-="form-input">
+          <button type="submit" class="btn btn-secondary">Search</button>
+        </form>
+      </div>
+      <!-- search history -->
+      <div class="search-history">
+        <!-- dynamically add search history using JS -->
+      </div>
+    </div>
+
+    <!-- display weather information here -->
+    <div class="col-12 col-md-8 col-lg-9">
+      <h3 class="title">Today's Weather</h3>
+      <div class="row" id="todays-weather">
+        <div class="col-3">
+          <h4 class="" id="location-display"> </h4>
+          <h4 id="current-date"> </h4>
+          <p id="current-weather-icon"></p>
+        </div>
+        <div class="col-9">
+          <p id="current-temp"> </p>
+          <p id="current-humidity"> </p>
+          <p id="current-wind"> </p>
+          <p id="current-uv-index"> </p>
+        </div>
+      </div>
+
+      <h3 class="title">Five Day Forecast</h3>
+      <div id="five-day-forecast">
+        
+        
+      </div>
+
+    </div>
+
+  </main>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="./assets/js/script.js"></script>
+</body>
+</html>
