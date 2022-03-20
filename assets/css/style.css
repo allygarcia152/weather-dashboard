@@ -41,6 +41,8 @@ button {
 
 .search-history {
   border-top: solid black 4px;
+  padding: 30px;
+  align-items: center;
 }
 
 #todays-weather,
@@ -50,5 +52,36 @@ button {
   padding: 20px;
   margin-right: 50px;
 }
+
+.green {
+  background-color: green;
+  width: 130px;
+  border-radius: 5px;
+}
+
+.yellow {
+  background-color: yellow;
+  width: 130px;
+  border-radius: 5px;
+}
+
+.orange {
+  background-color: orange;
+  width: 130px;
+  border-radius: 5px;
+}
+
+.red {
+  background-color: red;
+  width: 130px;
+  border-radius: 5px;
+}
+
+.purple {
+  background-color: purple;
+  width: 130px;
+  border-radius: 5px;
+}
+
 
 

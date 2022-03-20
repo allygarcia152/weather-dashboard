@@ -12,7 +12,16 @@ var getLocationName = function () {
   var cityName = cityStateEl.split("%2C")[0];
   console.log(cityName);
 
-  //localStorage searches
+  //save location name to localStorage 
+  localStorage.setItem("City Name", cityName);
+  
+  //display searches under search button
+  var searchDisplay = document.querySelector(".search-history");
+  var displayName = document.createElement("div");
+  displayName.classList.add("btn");
+  displayName.classList.add("btn-secondary");
+  displayName.textContent = localStorage.getItem(cityName);
+  searchDisplay.appendChild(displayName);
 
   //get lat and lon based on city,state search//
   var apiUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&limit=5&apiKey=0e363cf8d4f89182d0429ca737e95a95";
@@ -64,12 +73,12 @@ var displayWeather = function (data) {
         //get current temperature
         var currentTemp = data.current.temp;
         console.log(currentTemp);
-        temp.textContent = "Temperature: " + currentTemp;
+        temp.textContent = "Temperature: " + currentTemp + "F";
 
         //get current humidity
         var currentHum = data.current.humidity;
         console.log(currentHum);
-        hum.textContent = "Humidity: " + currentHum;
+        hum.textContent = "Humidity: " + currentHum + "%";
 
         //get current wind speed
         var currentWind = data.current.wind_speed;
@@ -80,6 +89,20 @@ var displayWeather = function (data) {
         var currentIndex = data.current.uvi;
         console.log(currentIndex);
         index.textContent = "UV Index: " + currentIndex;
+        
+        //set color coding by hour
+        if (currentIndex < 3) {
+          index.classList.add("green")
+        } else if (currentIndex >= 3 && currentIndex < 6){
+          index.classList.add("yellow")
+        } else if (currentIndex >= 6 && currentIndex < 8){
+          index.classList.add("orange")
+        } else if (currentIndex >= 8 && currentIndex < 11){
+          index.classList.add("red")
+        } else {
+          index.classList.add("purple")
+        }
+
       })
     };
   });
